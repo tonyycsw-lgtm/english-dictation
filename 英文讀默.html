@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Writing Practice | Unit 5: The World of Gadgets</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Georgia', 'Times New Roman', 'Microsoft JhengHei', serif;
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh; 
+            padding: 30px 20px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            color: #2d3748;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 標題樣式 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        h1 {
+            font-size: 34px;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #718096;
+            font-weight: 400;
+        }
+        
+        /* 統計區域樣式 */
+        .stats-container {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .stats-title {
+            font-size: 20px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stats-title i {
+            color: #4299e1;
+        }
+        
+        /* 分頁標籤 */
+        .stats-tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 25px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 4px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 14px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tab-btn.active {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stats-content {
+            min-height: 180px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+        
+        .stat-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        .stat-label {
+            font-size: 15px;
+            color: #718096;
+        }
+        
+        /* 卡片區域標題 */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: #4299e1;
+            border-radius: 2px;
+        }
+        
+        /* 卡片網格布局 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 22px;
+        }
+        
+        /* Words 卡片網格布局 - 一行三欄 */
+        #words-cards .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 22px;
+        }
+        
+        /* Sentences 卡片網格布局 - 一行二欄 */
+        #sentences-cards .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 22px;
+        }
+        
+        /* 卡片容器 */
+        .card-container {
+            height: 235px;
+            perspective: 1500px;
+        }
+        
+        /* Sentences 卡片更高一些 */
+        #sentences-cards .card-container {
+            height: 280px;
+            position: relative;
+        }
+        
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 18px;
+        }
+        
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        /* 卡片正反面共用樣式 */
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 
+                0 15px 35px rgba(50, 50, 93, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.07),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: visible !important;
+        }
+        
+        /* 卡片正面漸變色 */
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* 句子卡片正面漸變色 */
+        .sentence-card .card-front {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        /* 卡片背面樣式 */
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+        }
+        
+        /* 卡片內容樣式 */
+        .card-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        .card-back .card-number {
+            color: #a0aec0;
+        }
+        
+        .card-content {
+            text-align: center;
+            width: 100%;
+            margin: 10px 0;
+            padding: 0 15px;
+            overflow: hidden;
+        }
+        
+        .card-front .card-content {
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        
+        .answer-text {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+        
+        .card-back .answer-text {
+            color: #1a365d;
+        }
+        
+        .translation-text {
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            word-break: break-word;
+        }
+        
+        .card-back .translation-text {
+            color: #718096;
+        }
+        
+        /* Sentences 卡片中文字體加大 */
+        .sentence-card .translation-text {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        /* 移除繁體標記後的樣式調整 */
+        .traditional-chinese {
+            display: none;
+        }
+        
+        .hint-text {
+            font-size: 16px;
+            color: #a0aec0;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .warn-text {
+            display: none;
+        }
+        
+        /* 星星評級樣式 */
+        .stars-container {
+            display: flex;
+            gap: 6px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .star {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.4);
+            user-select: none;
+        }
+        
+        .star.active {
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+        
+        .stars-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 4px;
+            text-align: center;
+        }
+        
+        /* 音頻按鈕容器 */
+        .audio-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .audio-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .audio-btn.playing {
+            background: rgba(255, 255, 255, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .audio-btn i {
+            color: white;
+            font-size: 18px;
+        }
+        
+        .slow-btn {
+            background: rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+                
+        .slow-btn i {
+            font-size: 18px;
+        }
+        
+        /* 操作按鈕樣式 */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .correct-btn {
+            background: #48bb78;
+        }
+        
+        .correct-btn:hover {
+            background: #38a169;
+        }
+        
+        .review-btn {
+            background: #f56565;
+        }
+        
+        .review-btn:hover {
+            background: #e53e3e;
+        }
+        
+        .action-btn i {
+            color: white;
+            font-size: 20px;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        
+        /* 翻轉提示 - 已刪除 */
+        .flip-hint {
+            display: none;
+        }
+        
+        /* 隱藏卡片區域（用於分頁） */
+        .cards-section {
+            display: none;
+        }
+        
+        .cards-section.active {
+            display: block;
+        }
+        
+        /* 隱藏統計項 */
+        .stat-item.hidden {
+            display: none;
+        }
+        
+        /* 重置按鈕樣式 */
+        .reset-button {
+            background: #f56565;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            float: right;
+        }
+        
+        .reset-button:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+        }
+        
+        .reset-button:active {
+            transform: translateY(0);
+        }
+        
+        /* 慢速音頻進度條樣式 - 卡片內部底部 */
+        .slow-audio-progress {
+            position: absolute;
+            bottom: 18px;
+            left: 5px;
+            right: 5px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            display: block !important;
+            visibility: visible !important;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+
+        .slow-audio-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffeb3b, #4caf50);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 0%;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .slow-audio-progress-text {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1px 6px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 11;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 1200px) {
+            #sentences-cards .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+            
+            #words-cards .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+            
+            #sentences-cards .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #words-cards .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #sentences-cards .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-container {
+                height: 225px;
+            }
+            
+            #sentences-cards .card-container {
+                height: 270px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-value {
+                font-size: 26px;
+            }
+            
+            .answer-text {
+                font-size: 20px;
+            }
+            
+            .translation-text {
+                font-size: 17px;
+            }
+            
+            .sentence-card .translation-text {
+                font-size: 19px;
+            }
+            
+            .tab-btn {
+                padding: 12px 16px;
+                font-size: 15px;
+            }
+            
+            .reset-button {
+                padding: 6px 16px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-container {
+                height: 235px;
+            }
+            
+            #sentences-cards .card-container {
+                height: 280px;
+            }
+            
+            .audio-btn {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .action-btn {
+                width: 46px;
+                height: 46px;
+            }
+            
+            .action-btn i {
+                font-size: 18px;
+            }
+        }
+        
+        /* 頁腳樣式 */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #a0aec0;
+            font-size: 15px;
+            width: 100%;
+        }
+        
+        /* 數據狀態指示器 */
+        .data-status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            background: #48bb78;
+        }
+        
+        .data-status.saving {
+            background: #ed8936;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 頁面標題 -->
+        <div class="header">
+            <h1>English Dictation Practice</h1>
+            <div class="subtitle">Unit 5: The World of Gadgets</div>
+        </div>
+        
+        <!-- 統計區域 -->
+        <div class="stats-container">
+            <div class="stats-title">
+                <i class="fas fa-chart-bar"></i> Progress Overview
+                <span class="data-status" id="data-status"></span>
+            </div>
+            
+            <!-- 分頁標籤 -->
+            <div class="stats-tabs">
+                <button class="tab-btn active" onclick="showTab('words')">
+                    <i class="fas fa-font"></i> Words
+                </button>
+                <button class="tab-btn" onclick="showTab('sentences')">
+                    <i class="fas fa-align-left"></i> Sentences
+                </button>
+            </div>
+            
+            <!-- 分頁內容 -->
+            <div class="stats-content">
+                <!-- 單詞統計 - Words分頁顯示 -->
+                <div class="tab-content active" id="words-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-words">10</div>
+                            <div class="stat-label">全部詞彙</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="mastered-words">0</div>
+                            <div class="stat-label">熟練的詞彙</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="review-words">0</div>
+                            <div class="stat-label">溫習中</div>
+                        </div>
+                        <!-- 隱藏 Sentences 相關統計 -->
+                        <div class="stat-item hidden" id="sentences-stat1">
+                            <div class="stat-value" id="total-sentences-words-tab">6</div>
+                            <div class="stat-label">全部句子</div>
+                        </div>
+                        <div class="stat-item hidden" id="sentences-stat2">
+                            <div class="stat-value" id="mastered-sentences-words-tab">0</div>
+                            <div class="stat-label">熟練的句子</div>
+                        </div>
+                        <div class="stat-item hidden" id="sentences-stat3">
+                            <div class="stat-value" id="review-sentences-words-tab">0</div>
+                            <div class="stat-label">溫習中</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 句子統計 - Sentences分頁顯示 -->
+                <div class="tab-content" id="sentences-stats">
+                    <div class="stats-grid">
+                        <!-- 隱藏 Words 相關統計 -->
+                        <div class="stat-item hidden" id="words-stat1">
+                            <div class="stat-value" id="total-words2">10</div>
+                            <div class="stat-label">全部詞彙</div>
+                        </div>
+                        <div class="stat-item hidden" id="words-stat2">
+                            <div class="stat-value" id="mastered-words2">0</div>
+                            <div class="stat-label">熟練的詞彙</div>
+                        </div>
+                        <div class="stat-item hidden" id="words-stat3">
+                            <div class="stat-value" id="review-words2">0</div>
+                            <div class="stat-label">溫習中</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-sentences-sentences-tab">6</div>
+                            <div class="stat-label">全部句子</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="mastered-sentences-sentences-tab">0</div>
+                            <div class="stat-label">熟練的句子</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="review-sentences-sentences-tab">0</div>
+                            <div class="stat-label">溫習中</div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 🔤 高頻詞默寫卡片區 -->
+        <div class="section cards-section active" id="words-cards">
+            <div class="section-title">高頻詞彙
+                <button class="reset-button" onclick="resetCurrentTabData(event)">
+                    <i class="fas fa-redo"></i> 重置
+                </button>
+            </div>
+            <div class="cards-grid">
+                <!-- Word 1 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 1</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word1-stars"></div>
+                                <div class="stars-label" id="word1-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('short', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 1</div>
+                            <div class="card-content">
+                                <div class="answer-text">short</div>
+                                <div class="translation-text">短的；矮的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word1', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word1', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 2 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 2</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word2-stars"></div>
+                                <div class="stars-label" id="word2-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('new', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 2</div>
+                            <div class="card-content">
+                                <div class="answer-text">new</div>
+                                <div class="translation-text">新的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word2', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word2', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 3 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 3</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word3-stars"></div>
+                                <div class="stars-label" id="word3-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('fun', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 3</div>
+                            <div class="card-content">
+                                <div class="answer-text">fun</div>
+                                <div class="translation-text">樂趣；趣事</div>
+                                <div class="hint-text">noun</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word3', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word3', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 4 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 4</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word4-stars"></div>
+                                <div class="stars-label" id="word4-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('less', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 4</div>
+                            <div class="card-content">
+                                <div class="answer-text">less</div>
+                                <div class="translation-text">更少的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word4', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word4', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 5 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 5</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word5-stars"></div>
+                                <div class="stars-label" id="word5-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('long', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 5</div>
+                            <div class="card-content">
+                                <div class="answer-text">long</div>
+                                <div class="translation-text">長的；長久的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word5', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word5', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 6 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 6</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word6-stars"></div>
+                                <div class="stars-label" id="word6-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('small', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 6</div>
+                            <div class="card-content">
+                                <div class="answer-text">small</div>
+                                <div class="translation-text">小的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word6', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word6', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 7 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 7</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word7-stars"></div>
+                                <div class="stars-label" id="word7-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('more', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 7</div>
+                            <div class="card-content">
+                                <div class="answer-text">more</div>
+                                <div class="translation-text">更多的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word7', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word7', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 8 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 8</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word8-stars"></div>
+                                <div class="stars-label" id="word8-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('photos', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 8</div>
+                            <div class="card-content">
+                                <div class="answer-text">photos</div>
+                                <div class="translation-text">照片</div>
+                                <div class="hint-text">noun</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word8', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word8', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 9 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 9</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word9-stars"></div>
+                                <div class="stars-label" id="word9-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('best', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 9</div>
+                            <div class="card-content">
+                                <div class="answer-text">best</div>
+                                <div class="translation-text">最好的</div>
+                                <div class="hint-text">adjective</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word9', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word9', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Word 10 -->
+                <div class="card-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Word 10</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="word10-stars"></div>
+                                <div class="stars-label" id="word10-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('movies', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Word 10</div>
+                            <div class="card-content">
+                                <div class="answer-text">movies</div>
+                                <div class="translation-text">電影</div>
+                                <div class="hint-text">noun</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('word10', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('word10', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 📜 句子默寫卡片區 -->
+        <div class="section cards-section" id="sentences-cards">
+            <div class="section-title">句子讀默
+                <button class="reset-button" onclick="resetCurrentTabData(event)">
+                    <i class="fas fa-redo"></i> 重置
+                </button>
+            </div>     
+
+            <div class="cards-grid">
+                <!-- Sentence 1 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 1</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent1-stars"></div>
+                                <div class="stars-label" id="sent1-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence1', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence1', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 1</div>
+                            <div class="card-content">
+                                <div class="answer-text">Old cameras are better than digital cameras.</div>
+                                <div class="translation-text">舊相機比數碼相機更好。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent1', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent1', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sentence 2 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 2</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent2-stars"></div>
+                                <div class="stars-label" id="sent2-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence2', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence2', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 2</div>
+                            <div class="card-content">
+                                <div class="answer-text">They agree that modern machines are better.</div>
+                                <div class="translation-text">他們同意現代機器更好。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent2', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent2', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sentence 3 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 3</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent3-stars"></div>
+                                <div class="stars-label" id="sent3-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence3', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence3', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 3</div>
+                            <div class="card-content">
+                                <div class="answer-text">Digital cameras are more convenient.</div>
+                                <div class="translation-text">數碼相機更方便。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent3', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent3', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sentence 4 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 4</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent4-stars"></div>
+                                <div class="stars-label" id="sent4-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence4', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence4', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 4</div>
+                            <div class="card-content">
+                                <div class="answer-text">This gadget makes life easier.</div>
+                                <div class="translation-text">這個小工具讓生活更輕鬆。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent4', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent4', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sentence 5 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 5</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent5-stars"></div>
+                                <div class="stars-label" id="sent5-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence5', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence5', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 5</div>
+                            <div class="card-content">
+                                <div class="answer-text">Modern technology helps us communicate.</div>
+                                <div class="translation-text">現代科技幫助我們溝通。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent5', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent5', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sentence 6 -->
+                <div class="card-container sentence-card">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="card-front">
+                            <div class="card-number">Sentence 6</div>
+                            <div class="card-content">
+                                <div class="stars-container" id="sent6-stars"></div>
+                                <div class="stars-label" id="sent6-label">Click to flip</div>
+                            </div>
+                            <div class="audio-buttons">
+                                <button class="audio-btn" onclick="playAudio('sentence6', this, event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="audio-btn slow-btn" onclick="playSequentialSlowAudio('sentence6', this, event)">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-number">Sentence 6</div>
+                            <div class="card-content">
+                                <div class="answer-text">Smartphones are useful gadgets.</div>
+                                <div class="translation-text">智能手機是有用的小工具。</div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn correct-btn" onclick="markCorrect('sent6', event)" disabled>
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="action-btn review-btn" onclick="markReview('sent6', event)" disabled>
+                                    <i class="fas fa-book"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 頁腳 -->
+        <div class="footer">
+            English Writing Practice Platform © 2023
+        </div>
+    </div>
+
+    <script>
+        // 全局變量：追蹤當前播放的音頻
+        let currentAudio = null;
+        let currentAudioBtn = null;
+        let currentSlowAudioIndex = 0;
+        
+        // 阻止事件冒泡函數
+        function stopPropagation(event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        }
+        
+        // 停止當前播放的音頻
+        function stopCurrentAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                
+                // 移除播放按鈕的playing類
+                if (currentAudioBtn) {
+                    currentAudioBtn.classList.remove('playing');
+                    // 如果是慢速播放按鈕，重置進度條
+                    if (currentAudioBtn.classList.contains('slow-btn')) {
+                        resetProgressBar(currentAudioBtn);
+                    }
+                }
+                
+                currentAudio = null;
+                currentAudioBtn = null;
+            }
+        }
+
+        // 翻轉卡片函數
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+            
+            // 如果翻轉到背面，啟用按鈕
+            if (card.classList.contains('flipped')) {
+                const cardId = getCardId(card);
+                enableButtons(cardId);
+            } else {
+                // 翻轉回正面，禁用按鈕
+                const cardId = getCardId(card);
+                disableButtons(cardId);
+            }
+        }
+        
+        // 獲取卡片ID
+        function getCardId(cardElement) {
+            const starsContainer = cardElement.querySelector('.stars-container');
+            if (starsContainer && starsContainer.id) {
+                return starsContainer.id.replace('-stars', '');
+            }
+            return null;
+        }
+        
+        // 啟用按鈕
+        function enableButtons(cardId) {
+            if (!cardId) return;
+            
+            const card = document.querySelector(`#${cardId}-stars`)?.closest('.flashcard');
+            if (card) {
+                const buttons = card.querySelectorAll('.action-btn');
+                buttons.forEach(btn => btn.disabled = false);
+            }
+        }
+        
+        // 禁用按鈕
+        function disableButtons(cardId) {
+            if (!cardId) return;
+            
+            const card = document.querySelector(`#${cardId}-stars`)?.closest('.flashcard');
+            if (card) {
+                const buttons = card.querySelectorAll('.action-btn');
+                buttons.forEach(btn => btn.disabled = true);
+            }
+        }
+
+        // 音頻文件映射表
+        const audioFiles = {
+            'short': './audio/short.mp3',
+            'new': './audio/new.mp3',
+            'fun': './audio/fun.mp3',
+            'less': './audio/less.mp3',
+            'long': './audio/long.mp3',
+            'small': './audio/small.mp3',
+            'more': './audio/more.mp3',
+            'photos': './audio/photos.mp3',
+            'best': './audio/best.mp3',
+            'movies': './audio/movies.mp3',
+            'sentence1': './audio/sentence1.mp3',
+            'sentence2': './audio/sentence2.mp3',
+            'sentence3': './audio/sentence3.mp3',
+            'sentence4': './audio/sentence4.mp3',
+            'sentence5': './audio/sentence5.mp3',
+            'sentence6': './audio/sentence6.mp3'
+        };
+        
+        // 慢速音頻文件映射表（5個部分）
+        const slowAudioFiles = {
+            'sentence1': [
+                './audio/slow_sentence1-1.mp3',
+                './audio/slow_sentence1-2.mp3',
+                './audio/slow_sentence1-3.mp3',
+                './audio/slow_sentence1-4.mp3',
+                './audio/slow_sentence1-5.mp3'
+            ],
+            'sentence2': [
+                './audio/slow_sentence2-1.mp3',
+                './audio/slow_sentence2-2.mp3',
+                './audio/slow_sentence2-3.mp3',
+                './audio/slow_sentence2-4.mp3',
+                './audio/slow_sentence2-5.mp3'
+            ],
+            'sentence3': [
+                './audio/slow_sentence3-1.mp3',
+                './audio/slow_sentence3-2.mp3',
+                './audio/slow_sentence3-3.mp3',
+                './audio/slow_sentence3-4.mp3',
+                './audio/slow_sentence3-5.mp3'
+            ],
+            'sentence4': [
+                './audio/slow_sentence4-1.mp3',
+                './audio/slow_sentence4-2.mp3',
+                './audio/slow_sentence4-3.mp3',
+                './audio/slow_sentence4-4.mp3',
+                './audio/slow_sentence4-5.mp3'
+            ],
+            'sentence5': [
+                './audio/slow_sentence5-1.mp3',
+                './audio/slow_sentence5-2.mp3',
+                './audio/slow_sentence5-3.mp3',
+                './audio/slow_sentence5-4.mp3',
+                './audio/slow_sentence5-5.mp3'
+            ],
+            'sentence6': [
+                './audio/slow_sentence6-1.mp3',
+                './audio/slow_sentence6-2.mp3',
+                './audio/slow_sentence6-3.mp3',
+                './audio/slow_sentence6-4.mp3',
+                './audio/slow_sentence6-5.mp3'
+            ]
+        };
+        
+        // 存儲每個句子的當前播放索引
+        const slowAudioCurrentIndex = {
+            'sentence1': 0,
+            'sentence2': 0,
+            'sentence3': 0,
+            'sentence4': 0,
+            'sentence5': 0,
+            'sentence6': 0
+        };
+        
+        // 播放正常音頻
+        function playAudio(audioKey, btn, event) {
+            stopPropagation(event);
+            stopCurrentAudio();
+            
+            // 特別處理：如果正在播放慢速音頻，重置其進度條
+            document.querySelectorAll('.slow-btn').forEach(slowBtn => {
+                if (slowBtn.classList.contains('playing')) {
+                    slowBtn.classList.remove('playing');
+                    resetProgressBar(slowBtn);
+                }
+            });
+            
+            const audioSrc = audioFiles[audioKey];
+            if (!audioSrc) {
+                alert('Audio file not found: ' + audioKey);
+                return;
+            }
+            
+            currentAudio = new Audio();
+            currentAudio.src = audioSrc;
+            currentAudioBtn = btn;
+            
+            btn.classList.add('playing');
+            
+            currentAudio.oncanplaythrough = function() {
+                currentAudio.play().catch(e => {
+                    console.log('Audio playback failed:', e);
+                    btn.classList.remove('playing');
+                });
+            };
+            
+            currentAudio.onerror = function() {
+                btn.classList.remove('playing');
+                alert('Cannot load audio file: ' + audioKey);
+                currentAudio = null;
+                currentAudioBtn = null;
+            };
+            
+            currentAudio.onended = function() {
+                btn.classList.remove('playing');
+                currentAudio = null;
+                currentAudioBtn = null;
+            };
+        }
+        
+        // 播放順序慢速音頻
+        function playSequentialSlowAudio(sentenceKey, btn, event) {
+            stopPropagation(event);
+
+            // 確保進度條初始顯示
+            const sentenceCard = btn.closest('.sentence-card');
+            if (sentenceCard) {
+                const progressContainer = sentenceCard.querySelector('.slow-audio-progress');
+                if (progressContainer) {
+                    progressContainer.style.display = 'block';
+                    progressContainer.style.visibility = 'visible';
+                }
+            }
+            
+            // 如果正在播放同一句子的慢速音頻，則停止
+            if (currentAudioBtn === btn && currentAudio) {
+                stopCurrentAudio();
+                // 重置進度條
+                resetProgressBar(btn);
+                return;
+            }
+            
+            const currentIndex = slowAudioCurrentIndex[sentenceKey];
+            const audioFiles = slowAudioFiles[sentenceKey];
+            const totalParts = audioFiles ? audioFiles.length : 0;
+            
+            if (!audioFiles || totalParts === 0) {
+                alert('No slow audio files found for ' + sentenceKey);
+                return;
+            }
+            
+            // 如果已經播放完所有部分，重置索引
+            if (currentIndex >= totalParts) {
+                slowAudioCurrentIndex[sentenceKey] = 0;
+                resetProgressBar(btn);
+                playSequentialSlowAudio(sentenceKey, btn, event);
+                return;
+            }
+            
+            const audioFile = audioFiles[currentIndex];
+            
+            // 停止當前音頻
+            stopCurrentAudio();
+            
+            currentAudio = new Audio();
+            currentAudio.src = audioFile;
+            currentAudioBtn = btn;
+            
+            // 更新進度條顯示
+            updateProgressBar(btn, currentIndex, totalParts);
+            
+            // 更改圖標為暫停
+            const icon = btn.querySelector('i');
+            icon.className = 'fas fa-pause';
+            btn.classList.add('playing');
+            
+            currentAudio.oncanplaythrough = function() {
+                currentAudio.play().catch(e => {
+                    console.log('Audio playback failed:', e);
+                    btn.classList.remove('playing');
+                    icon.className = 'fas fa-play';
+                    resetProgressBar(btn);
+                });
+            };
+            
+            currentAudio.onerror = function() {
+                btn.classList.remove('playing');
+                icon.className = 'fas fa-play';
+                resetProgressBar(btn);
+                alert('Cannot load audio file: ' + audioFile);
+                currentAudio = null;
+                currentAudioBtn = null;
+            };
+            
+            currentAudio.onended = function() {
+                btn.classList.remove('playing');
+                
+                // 播放完後增加索引
+                slowAudioCurrentIndex[sentenceKey]++;
+                
+                // 如果還有下一個部分，自動播放
+                if (slowAudioCurrentIndex[sentenceKey] < totalParts) {
+                    // 準備播放下一個部分
+                    icon.className = 'fas fa-play'; // 暫時恢復為播放圖標
+                    
+                    setTimeout(() => {
+                        // 播放前更新進度條
+                        updateProgressBar(btn, slowAudioCurrentIndex[sentenceKey], totalParts);
+                        // 播放下一部分
+                        playSequentialSlowAudio(sentenceKey, btn, event);
+                    }, 500);
+                } else {
+                    // 所有部分播放完畢，重置索引並恢復圖標
+                    slowAudioCurrentIndex[sentenceKey] = 0;
+                    icon.className = 'fas fa-play';
+                    resetProgressBar(btn);
+                    currentAudio = null;
+                    currentAudioBtn = null;
+                }
+            };
+        }
+
+        // 更新進度條顯示
+        function updateProgressBar(btn, currentIndex, totalParts) {
+            const sentenceCard = btn.closest('.sentence-card');
+            if (!sentenceCard) return;
+            
+            // 查找或創建進度條容器
+            let progressContainer = sentenceCard.querySelector('.slow-audio-progress');
+            if (!progressContainer) {
+                progressContainer = document.createElement('div');
+                progressContainer.className = 'slow-audio-progress';
+                
+                const progressFill = document.createElement('div');
+                progressFill.className = 'slow-audio-progress-fill';
+                
+                const progressText = document.createElement('div');
+                progressText.className = 'slow-audio-progress-text';
+                
+                progressContainer.appendChild(progressFill);
+                progressContainer.appendChild(progressText);
+                sentenceCard.appendChild(progressContainer);
+            }
+            
+            // 計算進度百分比
+            const progressPercentage = ((currentIndex + 1) / totalParts) * 100;
+            
+            // 更新進度條填充
+            const progressFill = progressContainer.querySelector('.slow-audio-progress-fill');
+            progressFill.style.width = `${progressPercentage}%`;
+            
+            // 更新進度文字
+            const progressText = progressContainer.querySelector('.slow-audio-progress-text');
+            progressText.textContent = `${currentIndex + 1}/${totalParts}`;
+        }
+
+        // 重置進度條
+        function resetProgressBar(btn) {
+            const sentenceCard = btn.closest('.sentence-card');
+            if (!sentenceCard) return;
+            
+            const progressContainer = sentenceCard.querySelector('.slow-audio-progress');
+            if (progressContainer) {
+                // 重置進度條填充
+                const progressFill = progressContainer.querySelector('.slow-audio-progress-fill');
+                progressFill.style.width = '0%';
+                
+                // 重置進度文字
+                const progressText = progressContainer.querySelector('.slow-audio-progress-text');
+                progressText.textContent = '0/5';
+                
+                // 確保進度條仍然顯示
+                progressContainer.style.display = 'block';
+                progressContainer.style.visibility = 'visible';
+            }
+            
+            // 恢復播放圖標
+            const icon = btn.querySelector('i');
+            if (icon && icon.className.includes('fa-pause')) {
+                icon.className = 'fas fa-play';
+            }
+        }
+
+        // 星星管理系統
+        const starData = JSON.parse(localStorage.getItem('starData') || '{}');
+        const defaultStars = {
+            'word1': 0, 'word2': 0, 'word3': 0, 'word4': 0, 'word5': 0,
+            'word6': 0, 'word7': 0, 'word8': 0, 'word9': 0, 'word10': 0,
+            'sent1': 0, 'sent2': 0, 'sent3': 0, 'sent4': 0, 'sent5': 0, 'sent6': 0
+        };
+
+        // 初始化星星數據
+        Object.keys(defaultStars).forEach(key => {
+            if (!starData[key]) starData[key] = 0;
+        });
+
+        // 創建星星
+        function createStars(cardId, count) {
+            const container = document.getElementById(cardId + '-stars');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('div');
+                star.className = 'star' + (i < count ? ' active' : '');
+                star.innerHTML = '★';
+                container.appendChild(star);
+            }
+            
+            // 更新標籤
+            const label = document.getElementById(cardId + '-label');
+            if (label) {
+                if (count === 0) {
+                    label.textContent = '開始練習';
+                } else if (count < 3) {
+                    label.textContent = '繼續加油';
+                } else if (count < 5) {
+                    label.textContent = '信心大漲';
+                } else {
+                    label.textContent = '真棒! 你已經掌握了';
+                }
+            }
+        }
+
+        // 保存數據到本地存儲
+        function saveData() {
+            const status = document.getElementById('data-status');
+            status.classList.add('saving');
+            
+            localStorage.setItem('starData', JSON.stringify(starData));
+            
+            setTimeout(() => {
+                status.classList.remove('saving');
+            }, 500);
+        }
+
+        // 標記為正確
+        function markCorrect(cardId, event) {
+            stopPropagation(event);
+            
+            if (starData[cardId] < 5) {
+                starData[cardId]++;
+                saveData();
+                createStars(cardId, starData[cardId]);
+                updateStats();
+                
+                // 視覺反饋
+                const btn = event.target.closest('.correct-btn');
+                if (btn) {
+                    btn.style.transform = 'scale(1.1)';
+                    setTimeout(() => { btn.style.transform = ''; }, 300);
+                }
+                
+                // 禁用按鈕直到下次翻轉
+                disableButtons(cardId);
+            }
+        }
+
+        // 標記需要複習
+        function markReview(cardId, event) {
+            stopPropagation(event);
+            
+            if (starData[cardId] > 0) {
+                starData[cardId]--;
+                saveData();
+                createStars(cardId, starData[cardId]);
+                updateStats();
+                
+                // 視覺反饋
+                const btn = event.target.closest('.review-btn');
+                if (btn) {
+                    btn.style.transform = 'scale(1.1)';
+                    setTimeout(() => { btn.style.transform = ''; }, 300);
+                }
+                
+                // 禁用按鈕直到下次翻轉
+                disableButtons(cardId);
+            }
+        }
+
+        // 分頁切換
+        function showTab(tabName) {
+            // 更新按鈕狀態
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新統計內容顯示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + '-stats').classList.add('active');
+            
+            // 更新卡片區域顯示
+            document.querySelectorAll('.cards-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(tabName + '-cards').classList.add('active');
+            
+            // 更新統計顯示
+            updateStatsDisplay(tabName);
+        }
+        
+        // 更新統計顯示
+        function updateStatsDisplay(tabName) {
+            if (tabName === 'words') {
+                // 顯示Words統計，隱藏Sentences統計
+                document.querySelectorAll('#words-stats .stat-item').forEach(item => {
+                    if (!item.id || !item.id.startsWith('sentences-')) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            } else if (tabName === 'sentences') {
+                // 顯示Sentences統計，隱藏Words統計
+                document.querySelectorAll('#sentences-stats .stat-item').forEach(item => {
+                    if (!item.id || !item.id.startsWith('words-')) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        // 更新統計數據
+        function updateStats() {
+            const wordKeys = Object.keys(defaultStars).filter(key => key.startsWith('word'));
+            const sentenceKeys = Object.keys(defaultStars).filter(key => key.startsWith('sent'));
+            
+            // 單詞統計
+            const wordStars = wordKeys.map(key => starData[key] || 0);
+            const totalWords = wordKeys.length;
+            const masteredWords = wordStars.filter(v => v === 5).length;
+            const reviewWords = wordStars.filter(v => v < 3 || v === 0).length;
+            
+            // 更新所有單詞統計顯示
+            document.querySelectorAll('[id^="total-words"]').forEach(el => {
+                if (el.id === 'total-words' || el.id === 'total-words2') {
+                    el.textContent = totalWords;
+                }
+            });
+            
+            document.querySelectorAll('[id^="mastered-words"]').forEach(el => {
+                if (el.id === 'mastered-words' || el.id === 'mastered-words2') {
+                    el.textContent = masteredWords;
+                }
+            });
+            
+            document.querySelectorAll('[id^="review-words"]').forEach(el => {
+                if (el.id === 'review-words' || el.id === 'review-words2') {
+                    el.textContent = reviewWords;
+                }
+            });
+            
+            // 句子統計
+            const sentenceStars = sentenceKeys.map(key => starData[key] || 0);
+            const totalSentences = sentenceKeys.length;
+            const masteredSentences = sentenceStars.filter(v => v === 5).length;
+            const reviewSentences = sentenceStars.filter(v => v < 3 || v === 0).length;
+            
+            // 更新句子統計顯示（兩個分頁都更新）
+            document.querySelectorAll('[id^="total-sentences-"]').forEach(el => {
+                el.textContent = totalSentences;
+            });
+
+            document.querySelectorAll('[id^="mastered-sentences-"]').forEach(el => {
+                el.textContent = masteredSentences;
+            });
+
+            document.querySelectorAll('[id^="review-sentences-"]').forEach(el => {
+                el.textContent = reviewSentences;
+            });
+        }
+
+        // 初始化所有進度條
+        function initializeProgressBars() {
+            document.querySelectorAll('.sentence-card').forEach(sentenceCard => {
+                // 檢查是否已存在進度條
+                let progressContainer = sentenceCard.querySelector('.slow-audio-progress');
+                if (!progressContainer) {
+                    progressContainer = document.createElement('div');
+                    progressContainer.className = 'slow-audio-progress';
+                    
+                    const progressFill = document.createElement('div');
+                    progressFill.className = 'slow-audio-progress-fill';
+                    
+                    const progressText = document.createElement('div');
+                    progressText.className = 'slow-audio-progress-text';
+                    progressText.textContent = '0/5';
+                    
+                    progressContainer.appendChild(progressFill);
+                    progressContainer.appendChild(progressText);
+                    sentenceCard.appendChild(progressContainer);
+                }
+                
+                // 確保進度條顯示
+                progressContainer.style.display = 'block';
+                progressContainer.style.visibility = 'visible';
+            });
+        }
+
+        // 重置當前分頁數據（無通知版本，但有視覺反饋）
+        
+// 重置當前分頁數據（無通知版本，但有視覺反饋）
+function resetCurrentTabData(event) {
+    // 阻止事件冒泡
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    
+    // 獲取當前活動的分頁
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (!activeTab) return;
+    
+    const tabText = activeTab.textContent.toLowerCase();
+    const isWordsTab = tabText.includes('words');
+    const isSentencesTab = tabText.includes('sentences');
+    
+    // 獲取點擊的按鈕
+    const button = event.target.closest('.reset-button');
+    if (button) {
+        // 添加點擊反饋
+        button.style.transform = 'scale(0.95)';
+        button.style.opacity = '0.8';
+        
+        setTimeout(() => {
+            button.style.transform = '';
+            button.style.opacity = '';
+        }, 300);
+    }
+    
+    if (isWordsTab) {
+        // 重置所有單詞數據（無確認）
+        const wordKeys = Object.keys(defaultStars).filter(key => key.startsWith('word'));
+        wordKeys.forEach(key => {
+            starData[key] = 0;
+        });
+        
+        saveData();
+        initPage();
+        
+        // ✅ 新增：將所有單詞卡片翻回正面
+        document.querySelectorAll('#words-cards .flashcard').forEach(card => {
+            card.classList.remove('flipped');
+            // 禁用按鈕
+            const cardId = getCardId(card);
+            if (cardId) disableButtons(cardId);
+        });
+        
+    } else if (isSentencesTab) {
+        // 重置所有句子數據（無確認）
+        const sentenceKeys = Object.keys(defaultStars).filter(key => key.startsWith('sent'));
+        sentenceKeys.forEach(key => {
+            starData[key] = 0;
+        });
+        
+        // 重置慢速音頻索引
+        sentenceKeys.forEach(key => {
+            const sentenceKey = key.replace('sent', 'sentence');
+            if (slowAudioCurrentIndex[sentenceKey] !== undefined) {
+                slowAudioCurrentIndex[sentenceKey] = 0;
+            }
+        });
+        
+        // 重置所有句子卡片的進度條
+        document.querySelectorAll('.sentence-card').forEach(card => {
+            const progressContainer = card.querySelector('.slow-audio-progress');
+            if (progressContainer) {
+                const progressFill = progressContainer.querySelector('.slow-audio-progress-fill');
+                const progressText = progressContainer.querySelector('.slow-audio-progress-text');
+                if (progressFill) progressFill.style.width = '0%';
+                if (progressText) progressText.textContent = '0/5';
+            }
+        });
+        
+        saveData();
+        initPage();
+        
+        // ✅ 新增：將所有句子卡片翻回正面
+        document.querySelectorAll('#sentences-cards .flashcard').forEach(card => {
+            card.classList.remove('flipped');
+            // 禁用按鈕
+            const cardId = getCardId(card);
+            if (cardId) disableButtons(cardId);
+        });
+    }
+}
+
+        // 清除所有數據（用於測試）
+        function clearAllData() {
+            if (confirm('Are you sure you want to clear all learning data?')) {
+                localStorage.removeItem('starData');
+                
+                // 重置星星數據
+                Object.keys(defaultStars).forEach(key => {
+                    starData[key] = 0;
+                });
+                
+                // 重置慢速音頻索引
+                Object.keys(slowAudioCurrentIndex).forEach(key => {
+                    slowAudioCurrentIndex[key] = 0;
+                });
+                
+                // 重置所有句子卡片的進度條
+                document.querySelectorAll('.sentence-card').forEach(card => {
+                    const progressContainer = card.querySelector('.slow-audio-progress');
+                    if (progressContainer) {
+                        const progressFill = progressContainer.querySelector('.slow-audio-progress-fill');
+                        const progressText = progressContainer.querySelector('.slow-audio-progress-text');
+                        if (progressFill) progressFill.style.width = '0%';
+                        if (progressText) progressText.textContent = '0/5';
+                    }
+                });
+                
+                initPage();
+                alert('All learning data has been cleared!');
+            }
+        }
+
+        // 初始化頁面
+        function initPage() {
+            // 創建所有星星
+            Object.keys(starData).forEach(key => {
+                createStars(key, starData[key]);
+            });
+            
+            // 初始化所有按鈕為禁用狀態
+            Object.keys(starData).forEach(key => {
+                disableButtons(key);
+            });
+            
+            // 初始化所有進度條
+            initializeProgressBars();
+            
+            // 更新統計
+            updateStats();
+            
+            // 初始化統計顯示
+            updateStatsDisplay('words');
+            
+            // 顯示數據狀態
+            document.getElementById('data-status').classList.add('saving');
+            setTimeout(() => {
+                document.getElementById('data-status').classList.remove('saving');
+            }, 1000);
+        }
+
+        // 頁面加載時初始化
+        window.addEventListener('load', initPage);
+    </script>
+</body>
+</html>
